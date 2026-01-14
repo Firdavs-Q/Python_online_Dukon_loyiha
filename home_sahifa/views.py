@@ -2,7 +2,7 @@
 
 # # Create your views here.
 
-import requests 
+import requests
 from django.shortcuts import render
 
 def home(request):
