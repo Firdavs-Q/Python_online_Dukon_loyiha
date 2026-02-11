@@ -225,6 +225,6 @@ def payment(request):
     return render(request, 'payment.html', {'products': products})
 
 
-def paymentPage_end_click(request):
+def bosh_sahifaga_qaytarish(request):
     messages.success(request, "✅ To'lov muvaffaqiyatli amalga oshirildi! Rahmat!")
-    return redirect('home')
+    return render(request, 'homeP.html')

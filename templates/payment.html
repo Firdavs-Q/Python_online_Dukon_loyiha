@@ -169,7 +169,7 @@
     <div class="payment-box">
         <h2>💳 To'lov sahifasi</h2>
 
-        <!-- Products -->
+    
         <ul class="payment-list">
             {% for item in products %}
                 <li class="payment-item">
@@ -179,7 +179,7 @@
             {% endfor %}
         </ul>
 
-       
+      
         <div class="total-box">
             <div>Jami:</div>
             <div>{{ total_price|floatformat:2 }} so'm</div>
@@ -206,15 +206,12 @@
             </div>
         </div>
 
-      
-        <form method="post" action="{% url 'payment_end' %}">
-            {% csrf_token %}
-            <button type="submit" class="pay-btn">✅ To'lovni amalga oshirish</button>
+        
+        <form>
+           <a href="{% url 'home' %}" type="submit" class="pay-btn">✅ To'lovni amalga oshirish</a> 
         </form>
 
-    </div>
-</div> 
-
-
+    </div> 
+</div>
 
 {% endblock %}
