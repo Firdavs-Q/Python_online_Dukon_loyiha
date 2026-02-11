@@ -1,11 +1,218 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    fvdvdsgds
-</body>
-</html>
+{% extends "MainPage.html" %}
+
+{% block title %}
+    payment page
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .payment-wrapper{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 30px 10px;
+    }
+
+    .payment-box{
+        width: min(720px, 100%);
+        background: white;
+        border-radius: 18px;
+        padding: 25px;
+        box-shadow: 0 14px 35px rgba(0,0,0,0.10);
+        border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .payment-box h2{
+        font-size: 26px;
+        margin-bottom: 18px;
+        color: #111827;
+    }
+
+    .payment-list{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 15px;
+    }
+
+    .payment-item{
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        background: #f9fafb;
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(0,0,0,0.06);
+        font-weight: 700;
+        color: #111827;
+        flex-wrap: wrap;
+    }
+
+    .payment-item span{
+        color: #6b7280;
+        font-weight: 700;
+    }
+
+    .total-box{
+        margin-top: 18px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #fff7d6, #ffeaa6);
+        border: 1px solid rgba(0,0,0,0.08);
+        display: flex;
+        justify-content: space-between;
+        font-size: 18px;
+        font-weight: 900;
+        color: #1a140a;
+    }
+
+    .payment-methods{
+        margin-top: 20px;
+        padding: 16px;
+        border-radius: 16px;
+        background: #f9fafb;
+        border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .payment-methods h3{
+        font-size: 18px;
+        margin-bottom: 12px;
+        color: #111827;
+    }
+
+    .radio-row{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: white;
+        border: 1px solid rgba(0,0,0,0.07);
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .radio-row:hover{
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .radio-row label{
+        font-weight: 800;
+        color: #111827;
+        cursor: pointer;
+    }
+
+    .radio-row small{
+        display: block;
+        margin-top: 4px;
+        font-weight: 700;
+        color: #6b7280;
+    }
+
+    .radio-row input{
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    .pay-btn{
+        margin-top: 20px;
+        width: 100%;
+        border: none;
+        padding: 14px 18px;
+        border-radius: 14px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 900;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: white;
+        transition: 0.2s ease;
+        box-shadow: 0 12px 24px rgba(34, 197, 94, 0.25);
+    }
+
+    .pay-btn:hover{
+        transform: translateY(-2px);
+    }
+
+    .pay-btn:active{
+        transform: scale(0.98);
+    }
+
+    /* Responsive */
+    @media (max-width: 520px){
+        .payment-box{
+            padding: 18px;
+            border-radius: 16px;
+        }
+
+        .payment-box h2{
+            font-size: 22px;
+        }
+
+        .payment-item{
+            font-size: 14px;
+        }
+
+        .total-box{
+            font-size: 16px;
+        }
+    }
+</style>
+
+<div class="payment-wrapper">
+    <div class="payment-box">
+        <h2>💳 To'lov sahifasi</h2>
+
+        <!-- Products -->
+        <ul class="payment-list">
+            {% for item in products %}
+                <li class="payment-item">
+                    <div>{{ item.product.title }}</div>
+                    <span>{{ item.product.price|floatformat:2 }} so'm</span>
+                </li>
+            {% endfor %}
+        </ul>
+
+       
+        <div class="total-box">
+            <div>Jami:</div>
+            <div>{{ total_price|floatformat:2 }} so'm</div>
+        </div>
+
+        
+        <div class="payment-methods">
+            <h3>To'lov turini tanlang</h3>
+
+            <div class="radio-row">
+                <div>
+                    <label for="cash">💵 Naqd</label>
+                    <small>Mahsulot olinganda to'lanadi</small>
+                </div>
+                <input type="radio" name="payment_method" value="cash" id="cash">
+            </div>
+
+            <div class="radio-row">
+                <div>
+                    <label for="card">💳 Karta orqali</label>
+                    <small>Onlayn to'lov</small>
+                </div>
+                <input type="radio" name="payment_method" value="card" id="card">
+            </div>
+        </div>
+
+      
+        <form method="post" action="{% url 'payment_end' %}">
+            {% csrf_token %}
+            <button type="submit" class="pay-btn">✅ To'lovni amalga oshirish</button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

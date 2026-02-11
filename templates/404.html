@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>500 - Internal Server Error</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #7b4dff, #8f6bff, #6f5bff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* MAIN CARD */
+    .error-card {
+      width: 100%;
+      max-width: 1000px;
+      background: white;
+      border-radius: 18px;
+      padding: 30px 40px;
+      box-shadow: 0px 25px 60px rgba(0, 0, 0, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* TOP NAV */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 18px;
+    }
+
+    .logo {
+      width: 120px;
+      height: 18px;
+      background: #eee;
+      border-radius: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #444;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #7b4dff;
+    }
+
+    .lang {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    /* CENTER CONTENT */
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 40px 0 20px 0;
+      text-align: center;
+    }
+
+    /* Illustration */
+    .illustration {
+      width: 100%;
+      max-width: 420px;
+      height: 220px;
+      margin-bottom: 30px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #f5f2ff, #ffffff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* fake monitor */
+    .monitor {
+      width: 240px;
+      height: 150px;
+      border-radius: 14px;
+      background: white;
+      border: 2px solid #dcd6ff;
+      position: relative;
+      box-shadow: 0px 10px 30px rgba(123, 77, 255, 0.15);
+    }
+
+    .monitor::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 40px;
+      height: 8px;
+      border-radius: 10px;
+      background: #7b4dff;
+    }
+
+    .monitor::after {
+      content: "";
+      position: absolute;
+      top: 30px;
+      left: 10px;
+      width: 180px;
+      height: 10px;
+      border-radius: 10px;
+      background: #eee;
+    }
+
+    /* floating bars */
+    .bar1, .bar2 {
+      position: absolute;
+      height: 28px;
+      border-radius: 10px;
+      background: #7b4dff;
+      opacity: 0.85;
+    }
+
+    .bar1 {
+      width: 180px;
+      top: 40px;
+      left: 70px;
+    }
+
+    .bar2 {
+      width: 140px;
+      top: 80px;
+      left: 30px;
+      background: #9c7cff;
+    }
+
+    /* text */
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #2c2c2c;
+      margin-bottom: 12px;
+    }
+
+    p {
+      max-width: 650px;
+      font-size: 14px;
+      color: #777;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    /* button */
+    .btn {
+      padding: 14px 34px;
+      border: none;
+      background: #7b4dff;
+      color: white;
+      border-radius: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0px 10px 20px rgba(123, 77, 255, 0.35);
+    }
+
+    .btn:hover {
+      background: #6a3fff;
+      transform: translateY(-2px);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .error-card {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="error-card">
+
+    <!-- NAV -->
+    <div class="top-nav">
+      <div class="logo"></div>
+
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Products</a>
+        <a href="#">Portfolio</a>
+        <a href="#">Company</a>
+      </div>
+
+      <div class="lang">
+        🇺🇸 English ⌄
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <div class="illustration">
+        <div class="monitor"></div>
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+      </div>
+
+      <h1>Internal Server Error!</h1>
+
+      <p>
+        Something went wrong on our side. The server encountered an unexpected
+        condition that prevented it from fulfilling the request.
+        Please try again later.
+      </p>
+
+      <button class="btn" onclick="window.location.href='/'">
+        Back to Home
+      </button>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
