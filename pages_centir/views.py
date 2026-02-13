@@ -4,9 +4,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django.contrib import messages
 from django.db.models import Sum, F
-from databases.models import Post, UserSavat, UserLiked
 from django.db.models import Q
 from django.db.models import Sum
+from django.utils import timezone
+from databases.models import Post, UserSavat, UserLiked, comments
+
+
 
 class HOMEPageView(TemplateView):
     model = Post
@@ -228,3 +231,44 @@ def payment(request):
 def bosh_sahifaga_qaytarish(request):
     messages.success(request, "✅ To'lov muvaffaqiyatli amalga oshirildi! Rahmat!")
     return render(request, 'homeP.html')
+
+
+def coments_page(request, product_id):
+    commmit = get_object_or_404(Post, id=product_id)    
+    commint = comments.objects.filter(product=commmit)  
+    return render(request, 'coments.html', {'comments': commint})
+
+
+
+
+def batafsil_mahsulot(request, product_id):
+    product = get_object_or_404(Post, id=product_id)
+
+    product_comments = comments.objects.filter(product=product).select_related("user").order_by("-created_at")
+
+   
+    if request.method == "POST":
+
+        if not request.user.is_authenticated:
+            messages.warning(request, "⚠️ Komment yozish uchun login qiling!")
+            return redirect("batafsil_mahsulot", product_id=product_id)
+
+        text = request.POST.get("comment", "").strip()
+
+        if text:
+            comments.objects.create(
+                user=request.user,
+                product=product,
+                text=text,
+                created_at=timezone.now()
+            )
+            messages.success(request, "✅ Komment qo'shildi!")
+        else:
+            messages.error(request, "❌ Komment bo‘sh bo‘lmasin!")
+
+        return redirect("batafsil_mahsulot", product_id=product_id)
+
+    return render(request, "about_product.html", {
+        "product": product,
+        "comments": product_comments
+    })

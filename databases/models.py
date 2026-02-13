@@ -54,16 +54,9 @@ class UserLiked(models.Model):
     def __str__(self):
         return f"{self.user.username} → {self.product.title}"
     
-    
+
 class comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     product = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    text = models.TextField(verbose_name='Kommentariya matni')
+    text = models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
-
-    class Meta:
-        verbose_name = 'Kommentariya'
-        verbose_name_plural = 'Kommentariyalar'
-
-    def __str__(self):
-        return f"{self.user.username} → {self.product.title}: {self.text[:20]}..."

@@ -247,8 +247,11 @@
             <h4>{{ product.title }}</h4>
             <p class="price">{{ product.price|floatformat:2 }}</p>
 
-         
-        
+           <form method="post" class="comment-form" action="{% url 'batafsil_mahsulot' product.id %}">
+                {% csrf_token %}
+                <button type="submit" class="cart-btn btn_clickkk">🔎 Batafsil</button>
+            </form>
+        <br>
             <form method="post" action="{% url 'add_to_cart' product.id %}">
                 {% csrf_token %}
                 <button type="submit" class="cart-btn btn_clickkk">🛒 Savatga qo'shish</button>

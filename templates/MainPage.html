@@ -33,7 +33,6 @@
             color: var(--text);
         }
 
-        /* ---------------- HEADER ---------------- */
         header {
             width: 100%;
             min-height: 80px;
@@ -49,7 +48,6 @@
             box-shadow: var(--shadow);
         }
 
-        /* Left */
         .lcontainer {
             display: flex;
             align-items: center;
@@ -66,7 +64,6 @@
             border: 2px solid rgba(255,255,255,0.12);
         }
 
-        /* Buttons (menu, uz, search) */
         header button {
             padding: 10px 14px;
             border: none;
@@ -87,7 +84,6 @@
             transform: translateY(0px) scale(0.98);
         }
 
-        /* Center search */
         .Scontainer {
             flex: 1;
             display: flex;
@@ -132,7 +128,6 @@
             opacity: 0.75;
         }
 
-        /* Right links */
         .Ccontainer {
             display: flex;
             align-items: center;
@@ -156,7 +151,6 @@
             color: white;
         }
 
-        /* ---------------- MAIN ---------------- */
         main {
             padding: 26px 18px;
             max-width: 1500px;
@@ -172,9 +166,7 @@
             min-height: 70vh;
         }
 
-        /* ---------------- RESPONSIVE ---------------- */
-
-        /* Planshet */
+        
         @media (max-width: 950px) {
             header {
                 flex-wrap: wrap;
@@ -202,7 +194,7 @@
             }
         }
 
-        /* Telefon */
+        
         @media (max-width: 520px) {
             main {
                 padding: 18px 12px;
@@ -239,13 +231,13 @@
 <body>
 
 <header>
-    <!-- LEFT -->
+    
     <div class="lcontainer">
         <img src="https://i.pinimg.com/1200x/7a/7e/fd/7a7efd77f811f22ff5741ba673fdfcf6.jpg" alt="Logo">
         <button type="button">Menu</button>
     </div>
 
-    <!-- SEARCH -->
+    
     <div class="Scontainer">
         <div class="sbox">
             <form method="GET" action="">
@@ -256,7 +248,7 @@
         </div>
     </div>
 
-    <!-- RIGHT -->
+    
     <div class="Ccontainer">
         <a href="{% url 'home' %}">Bosh sahifa</a>
         <a href="{% url 'savat' %}">Buyurtmalar</a>

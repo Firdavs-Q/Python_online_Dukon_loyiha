@@ -215,17 +215,14 @@
             <img src="{{ product.image }}" alt="{{ product.title }}">
             <h4>{{ product.title }}</h4>
 
-            <!-- Sizda $ yozilgan edi, men so'm qildim -->
             <p class="price">{{ product.price|floatformat:2 }} so'm</p>
 
             <div class="action-buttons">
-                <!-- Like'dan olib tashlash -->
                 <form method="post" action="{% url 'toggle_like' product.id %}" style="flex: 1;">
                     {% csrf_token %}
                     <button type="submit" class="remove-like-btn">💔 O'chirish</button>
                 </form>
 
-                <!-- Savatga qo'shish -->
                 <form method="post" action="{% url 'add_to_cart' product.id %}" style="flex: 1;">
                     {% csrf_token %}
                     <button type="submit" class="add-to-cart-btn">🛒 Savat</button>
