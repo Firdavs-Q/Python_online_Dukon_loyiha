@@ -3,6 +3,11 @@ __pycache__/
 *$py.class
 
 *.so
+.env
+db.sqlite3
+media/
+staticfiles/
+__pycache__/
 
 .Python
 build/
