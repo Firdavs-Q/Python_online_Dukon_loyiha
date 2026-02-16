@@ -10,12 +10,20 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import csv
 from pathlib import Path
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+
+from decouple import config
+
+SECRET_KEY = config('SECRET_KEY')                   # majburiy, default yo'q
+DEBUG = config('DEBUG', default=False, cast=bool)   # default False — productionda xavfsiz
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=csv())
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -67,11 +75,11 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-# <<<<<<< HEAD
+
         'DIRS': [str(BASE_DIR.joinpath('templates'))],
-# =======
+
         'DIRS': ['templates'],
-# >>>>>>> 894828b30a11e426d02d56ff570470985defa2a0
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
